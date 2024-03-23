@@ -35,7 +35,7 @@ function addTask(task, state = false) {
   span.textContent = task;
   task_label.appendChild(span);
   let removeBtn = document.createElement("button");
-  removeBtn.innerHTML = "x";
+  removeBtn.textContent = "x";
   removeBtn.setAttribute("class", "remove-btn");
 
  
