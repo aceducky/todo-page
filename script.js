@@ -3,7 +3,6 @@ const taskInput = document.querySelector("#task-input");
 const addBtn = document.querySelector("#add-btn");
 const tasksCounterEl = document.querySelector("#tasks-counter");
 
-let tasksList = [];
 function taskCounter() {
   let totalTasks = document.querySelectorAll(
     "#tasks-list-header .task-el"
