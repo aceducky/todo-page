@@ -38,18 +38,20 @@ function addTask(task, state = false) {
   task_label.appendChild(input);
 
   const editBtn = document.createElement("button");
-  editBtn.setAttribute("class", "edit-btn")
+  editBtn.setAttribute("class", "task-btn")
   editBtn.textContent = "E";
-
+  editBtn.title = "edit"
   editBtn.addEventListener("mousedown", (e) => {
     e.preventDefault()
     if (editBtn.textContent === "E") {
       input.disabled = false;
       input.focus()
       editBtn.textContent = "S";
+      editBtn.title = "save"
     } else {
       input.disabled = true;
       editBtn.textContent = "E";
+      editBtn.title = "edit"
       saveTasksToLocalStorage();
     }
   });
@@ -57,14 +59,15 @@ function addTask(task, state = false) {
   input.addEventListener("blur", () => {
     input.disabled = true;
     editBtn.textContent = "E";
+    editBtn.title = "edit"
     saveTasksToLocalStorage();
   });
 
 
   let removeBtn = document.createElement("button");
   removeBtn.textContent = "x";
-  removeBtn.setAttribute("class", "remove-btn");
-
+  removeBtn.setAttribute("class", "task-btn");
+  removeBtn.title = "remove"
 
   task_el.appendChild(task_label);
   task_el.appendChild(editBtn)

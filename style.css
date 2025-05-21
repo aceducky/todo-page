@@ -19,7 +19,7 @@ body {
 
 #task-input {
   font-size: 1.3rem;
-  padding: 5px;
+  padding:6px 6px 6px 10px;
   background-color: #213694;
   outline: 1px white solid;
   border: none;
@@ -27,7 +27,6 @@ body {
   width: 350px;
   border-radius: 15px;
   margin-bottom: 20px;
-  cursor: pointer;
 }
 
 ::placeholder {
@@ -114,7 +113,7 @@ input[type="checkbox"] {
   line-break: anywhere;
 }
 
-.remove-btn {
+.task-btn {
   margin: 5px 15px 5px 0;
   font-size: 1.2rem;
   background-color: #12499c;
@@ -126,7 +125,7 @@ input[type="checkbox"] {
   transition: 0.3s ease;
   cursor: pointer;
 }
-.remove-btn:hover {
+.task-btn:hover {
   background-color: #f9eeee;
   border-radius: 50%;
   color: black;
