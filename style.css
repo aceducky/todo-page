@@ -105,8 +105,12 @@ input[type="checkbox"] {
   align-items: center;
   grid-template-columns: 40px 1fr;
 }
-.task-label > span {
-  cursor: pointer;
+.task-label > input[type="text"]{
+  font-size: medium;
+  background: none;
+  border: 0;
+  outline: 0;
+  color: white;
   line-break: anywhere;
 }
 

@@ -30,34 +30,63 @@ function addTask(task, state = false) {
   checkbox.type = "checkbox";
   checkbox.checked = state;
   task_label.appendChild(checkbox);
-  const span = document.createElement("span");
-  span.textContent = task;
-  task_label.appendChild(span);
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.value = task;
+  input.disabled = true;
+  task_label.appendChild(input);
+
+  const editBtn = document.createElement("button");
+  editBtn.setAttribute("class", "edit-btn")
+  editBtn.textContent = "E";
+
+  editBtn.addEventListener("mousedown", (e) => {
+    e.preventDefault()
+    if (editBtn.textContent === "E") {
+      input.disabled = false;
+      input.focus()
+      editBtn.textContent = "S";
+    } else {
+      input.disabled = true;
+      editBtn.textContent = "E";
+      saveTasksToLocalStorage();
+    }
+  });
+
+  input.addEventListener("blur", () => {
+    input.disabled = true;
+    editBtn.textContent = "E";
+    saveTasksToLocalStorage();
+  });
+
+
   let removeBtn = document.createElement("button");
   removeBtn.textContent = "x";
   removeBtn.setAttribute("class", "remove-btn");
 
- 
 
   task_el.appendChild(task_label);
+  task_el.appendChild(editBtn)
   task_el.appendChild(removeBtn);
   tasksListHeader.append(task_el);
 
   if (checkbox.checked) {
-    checkbox.parentElement.style.textDecoration = 'line-through'
+    task_label.style.textDecoration = 'line-through'
   }
+
   checkbox.addEventListener("change", function () {
     if (this.checked) {
-      this.parentElement.style.textDecoration = "line-through";
+      task_label.style.textDecoration = "line-through";
     } else {
-      this.parentElement.style.textDecoration = "";
+      task_label.style.textDecoration = "";
     }
     taskCounter();
     saveTasksToLocalStorage();
   });
 
-  removeBtn.addEventListener("click", (e) => {
-    e.target.parentElement.remove();
+  removeBtn.addEventListener("click", () => {
+    task_el.remove();
     taskCounter();
     saveTasksToLocalStorage();
   });
@@ -79,7 +108,7 @@ function handleTaskInput() {
 function saveTasksToLocalStorage() {
   let tasks = [];
   document.querySelectorAll("#tasks-list-header .task-el").forEach((taskEl) => {
-    let task = taskEl.querySelector("span").textContent;
+    let task = taskEl.querySelector('input[type="text"]').value;
     let state = taskEl.querySelector('input[type="checkbox"]').checked;
     tasks.push({ task, state });
   });
@@ -100,3 +129,4 @@ taskInput.addEventListener("keydown", function (e) {
 addBtn.addEventListener("click", handleTaskInput);
 
 document.addEventListener("DOMContentLoaded", loadTasksFromLocalStorage);
+
