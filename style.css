@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   background-color: #081064;
   color: white;
@@ -13,13 +14,14 @@ body {
   justify-content: center;
   min-height: 100vh;
 }
+
 #main {
   max-width: 400px;
 }
 
 #task-input {
   font-size: 1.3rem;
-  padding:6px 6px 6px 10px;
+  padding: 6px 6px 6px 10px;
   background-color: #213694;
   outline: 1px white solid;
   border: none;
@@ -41,11 +43,13 @@ body {
 ::-ms-input-placeholder {
   color: white;
 }
+
 #task-input:focus,
 #task-input:hover {
   outline: 2px solid rgba(81, 203, 238, 1);
   border: none;
 }
+
 #add-btn {
   color: blue;
   width: 40px;
@@ -56,15 +60,18 @@ body {
   transition: 0.4s;
   cursor: pointer;
 }
+
 #add-btn::before {
   content: "+";
   font-size: 2rem;
   font-weight: 600;
 }
+
 #add-btn:hover {
   background-color: rgb(0, 4, 249);
   color: white;
 }
+
 #tasks-counter {
   padding-top: 6px;
   text-align: center;
@@ -87,6 +94,7 @@ input[type="checkbox"] {
   margin: 10px;
   cursor: pointer;
 }
+
 .task-el {
   border-bottom: 2px solid rgb(22, 206, 206);
   border-radius: 30px;
@@ -95,16 +103,31 @@ input[type="checkbox"] {
   grid-template-columns: 1fr 50px;
   align-items: center;
 }
+
 .task-el:first-child {
   border: 2px solid rgb(22, 206, 206);
 }
+
 .task-label {
   display: grid;
   grid-auto-flow: column;
   align-items: center;
   grid-template-columns: 40px 1fr;
 }
-.task-label > input[type="text"]{
+
+.task-label>* {
+  cursor: pointer;
+}
+
+/*  
+Reference:https://jakearchibald.com/2017/events-and-disabled-form-fields/#workaround
+Disables pointer events on disabled inputs, allowing parent element events to fire as intended
+*/
+.task-el input:disabled {
+  pointer-events: none;
+}
+
+.task-label>input[type="text"] {
   font-size: medium;
   background: none;
   border: 0;
@@ -125,6 +148,7 @@ input[type="checkbox"] {
   transition: 0.3s ease;
   cursor: pointer;
 }
+
 .task-btn:hover {
   background-color: #f9eeee;
   border-radius: 50%;
@@ -132,12 +156,13 @@ input[type="checkbox"] {
 }
 
 @media only screen and (max-width: 400px) {
-  body > * {
+  body>* {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 90vw;
   }
+
   #add-btn {
     border-radius: 5px;
     width: 50vw;
@@ -145,6 +170,7 @@ input[type="checkbox"] {
     margin: 15px 0px;
     font-size: 1.2rem;
   }
+
   #add-btn::before {
     content: "Add";
   }
@@ -155,12 +181,15 @@ input[type="checkbox"] {
     align-items: center;
     flex-direction: column;
   }
+
   #task-input {
     width: 95vw;
   }
+
   .task-el {
     width: 90vw;
   }
+
   #tasks-counter {
     width: 90vw;
     padding: 5px;
